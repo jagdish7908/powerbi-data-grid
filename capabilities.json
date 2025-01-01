@@ -1,0 +1,25 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Measure Data",
+            "name": "measure",
+            "kind": "Measure"
+        }
+    ],
+    "objects": {},
+    "dataViewMappings": [
+        {
+            "conditions": [
+                {
+                    "measure": {
+                        "max": 1
+                    }
+                }
+            ],
+            "single": {
+                "role": "measure"
+            }
+        }
+    ],
+    "privileges": []
+}
