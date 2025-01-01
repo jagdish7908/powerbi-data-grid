@@ -11,7 +11,7 @@ export const initialState: State = {
     textValue: ""
 }
 
-export class ReactCircleCard extends React.Component<{}, State> {
+export class PowerGrid extends React.Component<{}, State> {
     constructor(props: any) {
         super(props);
         this.state = initialState;
@@ -20,24 +20,24 @@ export class ReactCircleCard extends React.Component<{}, State> {
     private static updateCallback: (data: object) => void = null;
 
     public static update(newState: State) {
-        if (typeof ReactCircleCard.updateCallback === 'function') {
-            ReactCircleCard.updateCallback(newState);
+        if (typeof PowerGrid.updateCallback === 'function') {
+            PowerGrid.updateCallback(newState);
         }
     }
 
     public state: State = initialState;
 
     public componentWillMount() {
-        ReactCircleCard.updateCallback = (newState: State): void => { this.setState(newState); };
+        PowerGrid.updateCallback = (newState: State): void => { this.setState(newState); };
     }
 
     public componentWillUnmount() {
-        ReactCircleCard.updateCallback = null;
+        PowerGrid.updateCallback = null;
     }
 
     render() {
         const { textLabel, textValue } = this.state;
-
+        
         return (
             <DataTable/>
         )

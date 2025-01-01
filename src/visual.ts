@@ -7,8 +7,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import * as React from "react";
 import {createRoot} from "react-dom/client";
-import { ReactCircleCard, initialState } from "./components/fluent-table";
-import DataTable from "./components/data-grid";
+import { PowerGrid, initialState } from "./components/power-grid";
 
 import "./../style/visual.less";
 
@@ -18,26 +17,26 @@ export class Visual implements IVisual {
 
     constructor(options: VisualConstructorOptions) {
         this.target = options.element;
-        this.reactRoot = React.createElement(ReactCircleCard, {});
+        this.reactRoot = React.createElement(PowerGrid, {});
 
         const root = createRoot(this.target);
         root.render(this.reactRoot);
     }
 
     public update(options: VisualUpdateOptions) {
-        // if(options.dataViews && options.dataViews[0]){
-        //     const dataView: DataView = options.dataViews[0];
+        if(options.dataViews && options.dataViews[0]){
+            const dataView: DataView = options.dataViews[0];
         
-        //     ReactCircleCard.update({
-        //         textLabel: dataView.metadata.columns[0].displayName,
-        //         textValue: dataView.single.value.toString()
-        //     });
-        // } else {
-        //     this.clear();
-        // }
+            PowerGrid.update({
+                textLabel: dataView.metadata.columns[0].displayName,
+                textValue: dataView.single.value.toString()
+            });
+        } else {
+            this.clear();
+        }
     }
 
     private clear() {
-        // ReactCircleCard.update(initialState);
+        PowerGrid.update(initialState);
     }
 }
